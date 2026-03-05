@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>配置文件详解 - openclaw.json</title>
+  <meta name="description" content="OpenClaw 配置文件 openclaw.json 详解：providers、channels、策略与安全字段说明。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-grid"></div><div class="bg-glow bg-glow-1"></div><div class="bg-glow bg-glow-2"></div>
+  <nav class="navbar"><div class="navbar-inner"><a href="index.html" class="logo"><span class="logo-icon">🦞</span><span class="logo-text">OpenClaw 中文教程</span></a><ul class="nav-links"><li><a href="install.html">安装教程</a></li><li><a href="quick-start.html">快速上手</a></li><li><a href="channels.html">渠道配置</a></li><li><a href="deploy.html">云部署</a></li>
+        <li><a href="docs/index.html">文档</a></li><li><a href="encyclopedia.html">百科</a></li><li><a href="faq.html">常见问题</a></li></ul></div></nav>
+  <main class="container content">
+    <section class="hero" style="padding:3rem 0;text-align:left;"><h1>配置文件详解：openclaw.json</h1><p class="hero-subtitle" style="margin:0;">你最该掌握的一页：知道每个字段做什么，排错速度会快很多。</p></section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">📍</span>文件位置</h2>
+      <div class="card-grid">
+        <div class="card"><h3 class="card-title">macOS / Linux</h3><p class="card-text"><code>~/.openclaw/openclaw.json</code></p></div>
+        <div class="card"><h3 class="card-title">Windows</h3><p class="card-text"><code>%USERPROFILE%\.openclaw\openclaw.json</code></p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🧱</span>最小可用配置（示例）</h2>
+      <div class="code-block"><div class="code-header"><span class="code-lang">json</span></div><div class="code-content"><code>{
+  "providers": {
+    "openai": {
+      "apiKey": "${OPENAI_API_KEY}"
+    }
+  },
+  "defaultModel": "openai/gpt-5",
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "${TELEGRAM_BOT_TOKEN}",
+      "dmPolicy": "pairing",
+      "groups": {
+        "*": { "requireMention": true }
+      }
+    }
+  }
+}</code></div></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🧠</span>Providers 字段要点</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-secondary);line-height:1.9;">
+        <li><code>apiKey</code>：模型供应商密钥，建议使用环境变量注入。</li>
+        <li><code>baseURL</code>：使用代理/兼容网关时填写。</li>
+        <li><code>defaultModel</code>：默认模型，建议使用稳定版本名。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">📡</span>Channels 字段要点</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-secondary);line-height:1.9;">
+        <li><code>enabled</code>：是否启用渠道。</li>
+        <li><code>dmPolicy</code>：私聊策略（如 pairing）。</li>
+        <li><code>groups.*.requireMention</code>：群聊是否必须 @ 才触发。</li>
+        <li><code>groupPolicy</code>：允许名单/策略控制。</li>
+      </ul>
+      <div class="tip tip-info mt-2"><span class="tip-icon">🔐</span><div><div class="tip-title">建议默认开启 requireMention</div><div class="tip-content">避免在群聊中被噪声触发，降低误调用成本。</div></div></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🛡️</span>安全实践清单</h2>
+      <ul style="margin-left:1.5rem;color:var(--text-secondary);line-height:1.9;">
+        <li>密钥不要硬编码到仓库，统一从环境变量读取。</li>
+        <li>公开部署时收紧网络入口，关闭不必要端口。</li>
+        <li>定期轮换密钥并清理历史 token。</li>
+        <li>日志与备份先脱敏再上传。</li>
+      </ul>
+    </section>
+
+    <section class="section text-center"><a href="cli-reference.html" class="btn btn-secondary">← CLI 命令大全</a> <a href="faq.html" class="btn btn-primary">去看常见问题 →</a></section>
+  </main>
+</body>
+</html>
+

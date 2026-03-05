@@ -1,0 +1,10 @@
+﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Troubleshooting - OpenClaw 文档</title><link rel="stylesheet" href="../css/style.css"></head><body>
+<div class="bg-grid"></div><div class="bg-glow bg-glow-1"></div><div class="bg-glow bg-glow-2"></div>
+<nav class="navbar"><div class="navbar-inner"><a href="../index.html" class="logo"><span class="logo-icon">🦞</span><span class="logo-text">OpenClaw 教程</span></a><ul class="nav-links"><li><a href="index.html">文档</a></li><li><a href="troubleshooting.html" class="active">Troubleshooting</a></li></ul></div></nav>
+<main class="container content"><section class="hero" style="padding:3rem 0;text-align:left;"><h1>Troubleshooting</h1><p class="hero-subtitle" style="margin:0;">按症状排查：先状态、再日志、再体检。</p></section>
+<section class="section"><h2 class="section-title"><span class="section-title-icon">🧪</span>标准排查序列</h2><div class="code-block"><div class="code-header"><span class="code-lang">bash</span></div><div class="code-content"><code>openclaw status --deep
+openclaw logs --follow
+openclaw doctor</code></div></div></section>
+<section class="section"><h2 class="section-title"><span class="section-title-icon">🧩</span>常见现象</h2><div class="card-grid"><div class="card"><h3 class="card-title">不回复</h3><p class="card-text">重点查渠道权限与 mention 策略。</p></div><div class="card"><h3 class="card-title">401/403</h3><p class="card-text">密钥/Token 无效或 scope 不足。</p></div><div class="card"><h3 class="card-title">429</h3><p class="card-text">触发速率限制，需降并发或切模型。</p></div></div></section>
+<section class="section"><h2 class="section-title"><span class="section-title-icon">🔗</span>官方原文</h2><p class="section-desc"><a href="https://docs.openclaw.ai/troubleshooting/common-issues" target="_blank" style="color:var(--accent-primary);">https://docs.openclaw.ai/troubleshooting/common-issues</a></p></section>
+<section class="section text-center"><a href="index.html" class="btn btn-secondary">← 文档目录</a></section></main></body></html>

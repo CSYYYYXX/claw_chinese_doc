@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw 百科全书 - 从入门到生产</title>
+  <meta name="description" content="OpenClaw 中文百科全书：新手保姆式教程，涵盖安装、配置、渠道接入、CLI、安全、运维与故障排查。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🦞</span>
+        <span class="logo-text">OpenClaw 中文教程</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="install.html">安装教程</a></li>
+        <li><a href="quick-start.html">快速上手</a></li>
+        <li><a href="channels.html">渠道配置</a></li>
+        <li><a href="deploy.html">云部署</a></li>
+        <li><a href="docs/index.html">文档</a></li>
+        <li><a href="encyclopedia.html" class="active">百科</a></li>
+        <li><a href="faq.html">常见问题</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container content">
+    <section class="hero" style="padding: 3rem 0; text-align: left;">
+      <h1>OpenClaw 百科全书</h1>
+      <p class="hero-subtitle" style="margin: 0;">
+        面向新手的一站式手册：你只要按顺序做，就能从“完全不会”走到“稳定在线运行”。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🗺️</span>先看路线图</h2>
+      <div class="card-grid">
+        <a href="#chapter-1" class="card" style="text-decoration:none;"><h3 class="card-title">第 1 章：准备环境</h3><p class="card-text">硬件、系统、Node.js 与网络准备。</p></a>
+        <a href="#chapter-2" class="card" style="text-decoration:none;"><h3 class="card-title">第 2 章：首次安装</h3><p class="card-text">安装 OpenClaw、运行向导、完成基础配置。</p></a>
+        <a href="#chapter-3" class="card" style="text-decoration:none;"><h3 class="card-title">第 3 章：接入渠道</h3><p class="card-text">Telegram/Discord/Slack/WhatsApp 接入原则与踩坑点。</p></a>
+        <a href="#chapter-4" class="card" style="text-decoration:none;"><h3 class="card-title">第 4 章：日常命令</h3><p class="card-text">status、doctor、logs、dashboard、gateway 全部作用。</p></a>
+        <a href="#chapter-5" class="card" style="text-decoration:none;"><h3 class="card-title">第 5 章：故障树</h3><p class="card-text">按“现象 → 原因 → 操作”排错。</p></a>
+        <a href="#chapter-6" class="card" style="text-decoration:none;"><h3 class="card-title">第 6 章：安全与生产</h3><p class="card-text">服务常驻、最小权限、密钥管理、远程访问安全。</p></a>
+      </div>
+    </section>
+
+    <section class="section" id="chapter-1">
+      <h2 class="section-title"><span class="section-title-icon">1️⃣</span>第 1 章：准备环境</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">最低建议配置</h3>
+          <div class="step-content">
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 1.9;">
+              <li>个人本地体验：4 核 CPU / 8GB RAM / 稳定网络。</li>
+              <li>云端常驻：1 vCPU / 2GB RAM 起步；多渠道建议 2 vCPU / 4GB RAM。</li>
+              <li>系统建议：Windows 11 + WSL2、macOS 13+、Ubuntu 22.04+。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step">
+          <h3 class="step-title">Node.js 版本建议</h3>
+          <div class="step-content">
+            <p>建议使用 Node.js LTS，优先 22+。安装后先验证：</p>
+            <div class="code-block mt-2"><div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">复制</button></div><div class="code-content"><code>node -v
+npm -v</code></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chapter-2">
+      <h2 class="section-title"><span class="section-title-icon">2️⃣</span>第 2 章：首次安装（保姆式）</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">第 1 步：安装 OpenClaw</h3>
+          <div class="step-content">
+            <div class="code-block"><div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">复制</button></div><div class="code-content"><code>npm install -g openclaw@latest
+openclaw --version</code></div></div>
+          </div>
+        </div>
+        <div class="step">
+          <h3 class="step-title">第 2 步：运行向导</h3>
+          <div class="step-content">
+            <div class="code-block"><div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">复制</button></div><div class="code-content"><code>openclaw onboard</code></div></div>
+            <p class="mt-2">向导会引导你选择模型、填 API Key、接渠道、设置网关。</p>
+          </div>
+        </div>
+        <div class="step">
+          <h3 class="step-title">第 3 步：安装后台服务（推荐）</h3>
+          <div class="step-content">
+            <div class="code-block"><div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">复制</button></div><div class="code-content"><code>openclaw onboard --install-daemon
+openclaw gateway status</code></div></div>
+            <p class="mt-2">这一步能保证终端关闭后服务仍在线。</p>
+          </div>
+        </div>
+      </div>
+      <div class="tip tip-info mt-3">
+        <span class="tip-icon">📂</span>
+        <div>
+          <div class="tip-title">配置文件位置（重要）</div>
+          <div class="tip-content">macOS/Linux: <code>~/.openclaw/openclaw.json</code>；Windows: <code>%USERPROFILE%\.openclaw\openclaw.json</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chapter-3">
+      <h2 class="section-title"><span class="section-title-icon">3️⃣</span>第 3 章：接入渠道与模型</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3 class="card-title">渠道优先级建议</h3>
+          <p class="card-text">新手首选 Telegram；团队协作常用 Discord/Slack；移动端重度用户可选 WhatsApp。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">模型选择建议（截至 2026-03-05）</h3>
+          <p class="card-text">OpenAI/Anthropic/Google 都可用。Google 侧建议优先 Gemini 2.5 系列。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">避免群聊刷屏</h3>
+          <p class="card-text">群里默认开启 mention 触发（requireMention），只在被 @ 时响应。</p>
+        </div>
+      </div>
+      <div class="tip tip-warning mt-3">
+        <span class="tip-icon">🔑</span>
+        <div>
+          <div class="tip-title">Key 管理</div>
+          <div class="tip-content">API Key 和 Bot Token 不要写进公开仓库；优先用环境变量或密钥管理工具。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chapter-4">
+      <h2 class="section-title"><span class="section-title-icon">4️⃣</span>第 4 章：每天会用到的命令</h2>
+      <div class="steps">
+        <div class="step"><h3 class="step-title">查看运行状态</h3><div class="step-content"><div class="code-block"><div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">复制</button></div><div class="code-content"><code>openclaw status
+openclaw status --deep</code></div></div></div></div>
+        <div class="step"><h3 class="step-title">系统体检</h3><div class="step-content"><div class="code-block"><div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">复制</button></div><div class="code-content"><code>openclaw doctor</code></div></div></div></div>
+        <div class="step"><h3 class="step-title">实时日志</h3><div class="step-content"><div class="code-block"><div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">复制</button></div><div class="code-content"><code>openclaw logs --follow</code></div></div></div></div>
+        <div class="step"><h3 class="step-title">可视化面板</h3><div class="step-content"><div class="code-block"><div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">复制</button></div><div class="code-content"><code>openclaw dashboard</code></div></div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="chapter-5">
+      <h2 class="section-title"><span class="section-title-icon">5️⃣</span>第 5 章：故障树（按症状排查）</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3 class="card-title">症状 A：Bot 在线但不回复</h3>
+          <p class="card-text">先看群权限与 mention 规则，再看 <code>logs --follow</code> 是否有 401/403/429。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">症状 B：模型调用失败</h3>
+          <p class="card-text">检查 API Key、额度、base URL、地区网络代理，然后跑 <code>doctor</code>。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">症状 C：重启后服务消失</h3>
+          <p class="card-text">确认已执行 <code>onboard --install-daemon</code> 并检查网关服务状态。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chapter-6">
+      <h2 class="section-title"><span class="section-title-icon">6️⃣</span>第 6 章：安全与生产化</h2>
+      <ul style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 1.9;">
+        <li>Dashboard 只对内网开放；公网访问使用反向代理与认证。</li>
+        <li>最小权限原则：渠道机器人只给需要的权限。</li>
+        <li>定期轮换 API Key / Bot Token，及时撤销旧凭证。</li>
+        <li>日志中避免泄露敏感信息；备份时对配置做脱敏。</li>
+        <li>生产环境优先采用 VPS + daemon + 监控告警。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">📚</span>官方文档镜像式导航（中文整理）</h2>
+      <div class="card-grid">
+        <a href="https://docs.openclaw.ai/getting-started" target="_blank" class="card" style="text-decoration:none;"><h3 class="card-title">Getting Started</h3><p class="card-text">从零到可用的官方流程。</p></a>
+        <a href="https://docs.openclaw.ai/reference/cli-commands" target="_blank" class="card" style="text-decoration:none;"><h3 class="card-title">CLI Commands</h3><p class="card-text">命令与参数总表。</p></a>
+        <a href="https://docs.openclaw.ai/channels/telegram" target="_blank" class="card" style="text-decoration:none;"><h3 class="card-title">Channels</h3><p class="card-text">各渠道配置方式与权限说明。</p></a>
+        <a href="https://docs.openclaw.ai/troubleshooting/common-issues" target="_blank" class="card" style="text-decoration:none;"><h3 class="card-title">Troubleshooting</h3><p class="card-text">官方故障排查基线。</p></a>
+        <a href="https://docs.openclaw.ai/security" target="_blank" class="card" style="text-decoration:none;"><h3 class="card-title">Security</h3><p class="card-text">安全建议与风险模型。</p></a>
+        <a href="https://docs.openclaw.ai/vps" target="_blank" class="card" style="text-decoration:none;"><h3 class="card-title">VPS Hosting</h3><p class="card-text">云部署与主机建议。</p></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🧭</span>内部参考页</h2>
+      <div class="card-grid">
+        <a href="cli-reference.html" class="card" style="text-decoration:none;"><h3 class="card-title">CLI 命令大全</h3><p class="card-text">命令按场景分组，适合实操时快速查找。</p></a>
+        <a href="config-reference.html" class="card" style="text-decoration:none;"><h3 class="card-title">openclaw.json 详解</h3><p class="card-text">配置字段解释 + 最小可用样例。</p></a>
+      </div>
+    </section>
+    <section class="section text-center">
+      <a href="index.html" class="btn btn-secondary">← 返回首页</a>
+      <a href="install.html" class="btn btn-primary">从安装开始 →</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://openclaw.ai" target="_blank">官网</a>
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a>
+      <a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a>
+      <a href="https://discord.gg/clawd" target="_blank">Discord 社区</a>
+    </div>
+    <p>本页面为社区整理版百科，内容持续对齐官方文档更新。</p>
+  </footer>
+
+  <script>
+    function copyCode(btn) {
+      const code = btn.closest('.code-block').querySelector('code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = '已复制 ✓';
+        btn.style.color = 'var(--accent-primary)';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
+
+

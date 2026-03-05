@@ -26,6 +26,8 @@
         <li><a href="quick-start.html">快速上手</a></li>
         <li><a href="channels.html">渠道配置</a></li>
         <li><a href="deploy.html">云部署</a></li>
+        <li><a href="docs/index.html">文档</a></li>
+        <li><a href="encyclopedia.html">百科</a></li>
         <li><a href="faq.html">常见问题</a></li>
       </ul>
     </div>
@@ -220,10 +222,41 @@
           <h3 class="card-title"><span class="card-icon">☁️</span> 云部署</h3>
           <p class="card-text">VPS 部署、安全加固、日志排错实战</p>
         </a>
-        <a href="faq.html" class="card" style="text-decoration: none;">
+                <a href="encyclopedia.html" class="card" style="text-decoration: none;">
+          <h3 class="card-title"><span class="card-icon">🧠</span> OpenClaw 百科</h3>
+          <p class="card-text">从安装到排错、从配置到安全，一页总览全部关键知识</p>
+        </a>        <a href="faq.html" class="card" style="text-decoration: none;">
           <h3 class="card-title"><span class="card-icon">❓</span> 常见问题</h3>
           <p class="card-text">安装失败？配置报错？这里找答案</p>
         </a>
+      </div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">📌</span>
+        官方文档精华（整理）
+      </h2>
+      <p class="section-desc">参考官方英文文档与社区高质量教程，整理出最常用、最容易踩坑的部分。</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">✅</span> 环境基线</h3>
+          <p class="card-text">建议 Node.js 22+，首次配置后用 <code>openclaw status --deep</code> 和 <code>openclaw doctor</code> 做体检。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">🔐</span> 安全策略</h3>
+          <p class="card-text">生产环境启用强口令、限制来源 IP、通道默认 requireMention，避免 Bot 被公共群组滥用。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">🛠️</span> 排错闭环</h3>
+          <p class="card-text">优先执行 <code>openclaw status</code> → <code>openclaw logs --follow</code> → <code>openclaw doctor</code>，再回看渠道权限与密钥状态。</p>
+        </div>
+      </div>
+      <div class="tip tip-info mt-3">
+        <span class="tip-icon">📚</span>
+        <div>
+          <div class="tip-title">推荐阅读顺序</div>
+          <div class="tip-content">安装教程 → 快速上手 → 渠道配置 → 云部署 → 常见问题。每页都补充了官方文档链接，便于继续深挖。</div>
+        </div>
       </div>
     </section>
   </main>
@@ -256,4 +289,8 @@
   </script>
 </body>
 </html>
+
+
+
+
 

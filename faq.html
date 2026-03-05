@@ -26,6 +26,8 @@
         <li><a href="quick-start.html">快速上手</a></li>
         <li><a href="channels.html">渠道配置</a></li>
         <li><a href="deploy.html">云部署</a></li>
+        <li><a href="docs/index.html">文档</a></li>
+        <li><a href="encyclopedia.html">百科</a></li>
         <li><a href="faq.html" class="active">常见问题</a></li>
       </ul>
     </div>
@@ -188,12 +190,12 @@ export HTTPS_PROXY=http://127.0.0.1:7890</code>
       "apiKey": "xxx"
     }
   },
-  "defaultModel": "openai-codex/gpt-5.3-codex"
+  "defaultModel": "openai/gpt-5"
 }</code>
             </div>
           </div>
           <p class="mt-2"><strong>在对话中切换模型：</strong></p>
-          <p>发送 <code>/model anthropic/claude-3-7-sonnet</code> 即可切换当前会话的模型。</p>
+          <p>发送 <code>/model anthropic/claude-sonnet-latest</code> 即可切换当前会话的模型。</p>
         </div>
       </div>
 
@@ -205,17 +207,17 @@ export HTTPS_PROXY=http://127.0.0.1:7890</code>
         <div class="faq-answer">
           <p>配置文件位置：</p>
           <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
-            <li><strong>macOS / Linux：</strong><code>~/.openclaw/config.json</code></li>
-            <li><strong>Windows：</strong><code>C:\Users\你的用户名\.openclaw\config.json</code></li>
+            <li><strong>macOS / Linux：</strong><code>~/.openclaw/openclaw.json</code></li>
+            <li><strong>Windows：</strong><code>C:\Users\你的用户名\.openclaw\openclaw.json</code></li>
           </ul>
           <p class="mt-2">直接用文本编辑器打开即可修改。</p>
           <div class="code-block">
             <div class="code-content">
               <code># macOS/Linux
-code ~/.openclaw/config.json
+code ~/.openclaw/openclaw.json
 
 # Windows (PowerShell)
-code $env:USERPROFILE\.openclaw\config.json</code>
+code $env:USERPROFILE\.openclaw\openclaw.json</code>
             </div>
           </div>
         </div>
@@ -263,7 +265,7 @@ code $env:USERPROFILE\.openclaw\config.json</code>
           <p class="mt-2"><strong>导出对话：</strong></p>
           <div class="code-block">
             <div class="code-content">
-              <code>openclaw sessions export <session-key> > conversation.json</code>
+              <code>openclaw sessions export &lt;session-key&gt; &gt; conversation.json</code>
             </div>
           </div>
         </div>
@@ -406,7 +408,7 @@ pm2 startup</code>
           <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
             <li>在服务器上安装 Node.js</li>
             <li><code>npm install -g openclaw@latest</code></li>
-            <li>配置 <code>~/.openclaw/config.json</code></li>
+            <li>配置 <code>~/.openclaw/openclaw.json</code></li>
             <li>运行 <code>openclaw onboard --install-daemon</code> 安装为系统服务</li>
           </ol>
           <p class="mt-2"><strong>注意事项：</strong></p>
@@ -419,6 +421,53 @@ pm2 startup</code>
       </div>
     </section>
 
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">🧪</span>
+        官方排错流程（建议收藏）
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>为什么我应该优先跑 <code>openclaw doctor</code>？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p><code>openclaw doctor</code> 会集中检查运行环境、依赖、配置与权限，比手工逐项排查更快。</p>
+          <div class="code-block mt-2"><div class="code-content"><code>openclaw doctor
+openclaw status --deep</code></div></div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>频道连上了但群里没回复，先查什么？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li>确认频道策略是否要求 <code>requireMention</code>。</li>
+            <li>确认机器人在目标群有读写消息权限。</li>
+            <li>执行 <code>openclaw logs --follow</code> 看实时报错。</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>如何做生产环境安全加固？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li>Dashboard 使用强密码并定期轮换。</li>
+            <li>服务器仅开放必要端口，优先内网/零信任访问。</li>
+            <li>所有 Token/API Key 用环境变量或密文管理，不写进公开仓库。</li>
+            <li>群聊默认开启 mention 触发，避免误触发与刷屏。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <!-- 其他问题 -->
     <section class="section">
       <h2 class="section-title">
@@ -524,4 +573,8 @@ pm2 startup</code>
   </script>
 </body>
 </html>
+
+
+
+
 

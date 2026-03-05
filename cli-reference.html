@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLI 命令大全 - OpenClaw 中文百科</title>
+  <meta name="description" content="OpenClaw CLI 命令大全：网关、状态、诊断、日志、会话与自动化命令速查。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-grid"></div><div class="bg-glow bg-glow-1"></div><div class="bg-glow bg-glow-2"></div>
+  <nav class="navbar"><div class="navbar-inner"><a href="index.html" class="logo"><span class="logo-icon">🦞</span><span class="logo-text">OpenClaw 中文教程</span></a><ul class="nav-links"><li><a href="install.html">安装教程</a></li><li><a href="quick-start.html">快速上手</a></li><li><a href="channels.html">渠道配置</a></li><li><a href="deploy.html">云部署</a></li>
+        <li><a href="docs/index.html">文档</a></li><li><a href="encyclopedia.html">百科</a></li><li><a href="faq.html">常见问题</a></li></ul></div></nav>
+  <main class="container content">
+    <section class="hero" style="padding:3rem 0;text-align:left;"><h1>CLI 命令大全</h1><p class="hero-subtitle" style="margin:0;">把常用命令按场景分组，你只需要复制执行即可。</p></section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🚀</span>安装与初始化</h2>
+      <div class="code-block"><div class="code-header"><span class="code-lang">bash</span></div><div class="code-content"><code>npm install -g openclaw@latest
+openclaw --version
+openclaw onboard
+openclaw onboard --install-daemon</code></div></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🧭</span>状态与诊断</h2>
+      <div class="card-grid">
+        <div class="card"><h3 class="card-title">基础状态</h3><p class="card-text"><code>openclaw status</code><br>查看运行态、模型、渠道概览。</p></div>
+        <div class="card"><h3 class="card-title">深度状态</h3><p class="card-text"><code>openclaw status --deep</code><br>显示更细粒度健康信息。</p></div>
+        <div class="card"><h3 class="card-title">一键体检</h3><p class="card-text"><code>openclaw doctor</code><br>排查依赖、权限、配置问题。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🔧</span>网关生命周期</h2>
+      <div class="code-block"><div class="code-header"><span class="code-lang">bash</span></div><div class="code-content"><code>openclaw gateway start
+openclaw gateway stop
+openclaw gateway restart
+openclaw gateway status</code></div></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">📜</span>日志与调试</h2>
+      <div class="code-block"><div class="code-header"><span class="code-lang">bash</span></div><div class="code-content"><code>openclaw logs --follow
+openclaw dashboard</code></div></div>
+      <p class="section-desc">排错推荐顺序：<code>status</code> → <code>logs --follow</code> → <code>doctor</code>。</p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">💬</span>会话与历史</h2>
+      <div class="code-block"><div class="code-header"><span class="code-lang">bash</span></div><div class="code-content"><code>openclaw sessions list
+openclaw sessions export &lt;session-key&gt; &gt; session.json</code></div></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🧩</span>排错模板</h2>
+      <div class="steps">
+        <div class="step"><h3 class="step-title">模板 1：渠道不回消息</h3><div class="step-content"><p>检查权限与 mention 策略，日志中查 401/403/429。</p></div></div>
+        <div class="step"><h3 class="step-title">模板 2：模型请求失败</h3><div class="step-content"><p>确认 API Key、额度、地区网络代理、base URL。</p></div></div>
+        <div class="step"><h3 class="step-title">模板 3：重启丢服务</h3><div class="step-content"><p>确认执行过 <code>onboard --install-daemon</code>。</p></div></div>
+      </div>
+    </section>
+
+    <section class="section text-center"><a href="encyclopedia.html" class="btn btn-secondary">← 返回百科</a> <a href="config-reference.html" class="btn btn-primary">看配置详解 →</a></section>
+  </main>
+</body>
+</html>
+

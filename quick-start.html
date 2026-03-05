@@ -21,6 +21,8 @@
         <li><a href="quick-start.html" class="active">快速上手</a></li>
         <li><a href="channels.html">渠道配置</a></li>
         <li><a href="deploy.html">云部署</a></li>
+        <li><a href="docs/index.html">文档</a></li>
+        <li><a href="encyclopedia.html">百科</a></li>
         <li><a href="faq.html">常见问题</a></li>
       </ul>
     </div>
@@ -44,7 +46,7 @@
           <h3 class="card-title"><span class="card-icon">🟣</span> Anthropic</h3><p class="card-text">推荐：Claude 3.7 Sonnet</p>
         </div>
         <div class="card" id="google-model-card" onclick="showModel('google')" style="cursor:pointer;">
-          <h3 class="card-title"><span class="card-icon">🟠</span> Google</h3><p class="card-text">推荐：Gemini 2.0 系列</p>
+          <h3 class="card-title"><span class="card-icon">🟠</span> Google</h3><p class="card-text">推荐：Gemini 2.5 系列</p>
         </div>
         <div class="card" id="china-model-card" onclick="showModel('china')" style="cursor:pointer;">
           <h3 class="card-title"><span class="card-icon">🔵</span> 国内模型</h3><p class="card-text">通义 / 豆包 / DeepSeek</p>
@@ -56,7 +58,7 @@
           <ol style="margin-left:1.5rem;color:var(--text-secondary);line-height:1.9;">
             <li>去 OpenAI 平台创建 API Key。</li>
             <li>运行 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">openclaw onboard</code>，供应商选 OpenAI。</li>
-            <li>模型先选 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">openai-codex/gpt-5.3-codex</code>。</li>
+            <li>模型先选 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">openai/gpt-5</code>。</li>
             <li>执行 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">openclaw status</code> 确认模型已生效。</li>
           </ol>
         </div></div>
@@ -67,7 +69,7 @@
           <ol style="margin-left:1.5rem;color:var(--text-secondary);line-height:1.9;">
             <li>在 Anthropic 控制台生成 API Key。</li>
             <li>运行 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">openclaw onboard</code> 选择 Anthropic。</li>
-            <li>模型建议 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">anthropic/claude-3-7-sonnet</code>。</li>
+            <li>模型建议 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">anthropic/claude-sonnet-latest</code>。</li>
             <li>如遇速率限制，切换备用模型或降低输出长度。</li>
           </ol>
         </div></div>
@@ -78,7 +80,7 @@
           <ol style="margin-left:1.5rem;color:var(--text-secondary);line-height:1.9;">
             <li>在 Google AI Studio 创建 API Key。</li>
             <li>运行 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">openclaw onboard</code>，供应商选 Google。</li>
-            <li>模型优先 Gemini 2.0 系列。</li>
+            <li>模型优先 Gemini 2.5 系列。</li>
             <li>若地区受限，先用 OpenAI/Anthropic 跑通再回切。</li>
           </ol>
         </div></div>
@@ -89,7 +91,7 @@
           <ol style="margin-left:1.5rem;color:var(--text-secondary);line-height:1.9;">
             <li>先确定供应商（通义/豆包/DeepSeek）。</li>
             <li>准备 API Key 与 base URL。</li>
-            <li>在向导中选择兼容模式，或手动编辑 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">~/.openclaw/config.json</code>。</li>
+            <li>在向导中选择兼容模式，或手动编辑 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px;">~/.openclaw/openclaw.json</code>。</li>
             <li>用简单问答验证鉴权与网络，再投入正式使用。</li>
           </ol>
         </div></div>
@@ -118,6 +120,35 @@
       </div>
     </section>
 
+    <section class="section">
+      <h2 class="section-title"><span class="section-title-icon">🧭</span>官方推荐的稳定用法</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">1. 用深度状态确认运行质量</h3>
+          <div class="step-content">
+            <div class="code-block"><div class="code-header"><span class="code-lang">命令行</span></div><div class="code-content"><code>openclaw status --deep
+openclaw doctor</code></div></div>
+            <p class="mt-2">如果这里有红色/错误项，先修复再继续配渠道，能减少 80% 的后续问题。</p>
+          </div>
+        </div>
+        <div class="step">
+          <h3 class="step-title">2. 安装为后台服务（长期运行）</h3>
+          <div class="step-content">
+            <div class="code-block"><div class="code-header"><span class="code-lang">命令行</span></div><div class="code-content"><code>openclaw onboard --install-daemon
+openclaw gateway status</code></div></div>
+            <p class="mt-2">适合 VPS 或长期在线场景，避免终端断开后服务停止。</p>
+          </div>
+        </div>
+        <div class="step">
+          <h3 class="step-title">3. 统一入口：Dashboard + 日志跟踪</h3>
+          <div class="step-content">
+            <div class="code-block"><div class="code-header"><span class="code-lang">命令行</span></div><div class="code-content"><code>openclaw dashboard
+openclaw logs --follow</code></div></div>
+            <p class="mt-2">Dashboard 看整体状态，日志看实时错误，两者配合排查最快。</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="section text-center">
       <a href="install.html" class="btn btn-secondary">← 安装教程</a>
       <a href="channels.html" class="btn btn-primary">渠道配置 →</a>
@@ -148,4 +179,7 @@
   </script>
 </body>
 </html>
+
+
+
 
