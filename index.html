@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw 中文教程 - 个人 AI 助手入门指南</title>
+  <meta name="description" content="从零开始学习 OpenClaw：安装、配置、连接 Telegram/微信，打造你的专属 AI 助手。零基础友好，手把手教程。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 背景效果 -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🦞</span>
+        <span class="logo-text">OpenClaw 中文教程</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="install.html">安装教程</a></li>
+        <li><a href="quick-start.html">快速上手</a></li>
+        <li><a href="channels.html">渠道配置</a></li>
+        <li><a href="deploy.html">云部署</a></li>
+        <li><a href="faq.html">常见问题</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero 区域 -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span>开源免费 · 中文友好 · 零基础入门</span>
+    </div>
+    <h1>打造你的<span>专属 AI 助手</span></h1>
+    <p class="hero-subtitle">
+      OpenClaw 是一个可以在你自己的电脑上运行的 AI 助手。<br>
+      它可以帮你处理消息、控制设备、自动化任务——而这一切都是私密的、本地的。
+    </p>
+    <div class="hero-buttons">
+      <a href="install.html" class="btn btn-primary">
+        🚀 开始安装
+      </a>
+      <a href="quick-start.html" class="btn btn-secondary">
+        📖 先看看教程
+      </a>
+    </div>
+  </section>
+
+  <!-- 主要内容 -->
+  <main class="container content">
+    <!-- 什么是 OpenClaw -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">💡</span>
+        OpenClaw 是什么？
+      </h2>
+      <p class="section-desc">
+        简单来说，它就像一个住在你的电脑里的智能管家。
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <h3 class="card-title">
+            <span class="card-icon">💬</span>
+            多平台消息
+          </h3>
+          <p class="card-text">
+            连接 Telegram、Discord、Slack 等多个聊天平台，一个 AI 助手统一回复。
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">
+            <span class="card-icon">🔒</span>
+            隐私安全
+          </h3>
+          <p class="card-text">
+            所有数据都在你自己的电脑上，不会上传到云端。你的隐私，你说了算。
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">
+            <span class="card-icon">🤖</span>
+            智能自动化
+          </h3>
+          <p class="card-text">
+            可以帮你执行命令、管理文件、设置定时任务，甚至控制智能家居设备。
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">
+            <span class="card-icon">🔌</span>
+            无限扩展
+          </h3>
+          <p class="card-text">
+            通过 Skill（技能）系统，可以添加新功能，比如天气查询、邮件发送、股票监控等。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 三步上手 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">⚡</span>
+        三步即可上手
+      </h2>
+      <p class="section-desc">
+        即使你完全不懂编程，也能在 10 分钟内完成安装。
+      </p>
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">安装 Node.js</h3>
+          <div class="step-content">
+            <p>Node.js 是运行 OpenClaw 的基础环境。去 <a href="https://nodejs.org" target="_blank" style="color: var(--accent-primary);">nodejs.org</a> 下载安装包，一路"下一步"即可。</p>
+            <div class="tip tip-info mt-2">
+              <span class="tip-icon">ℹ️</span>
+              <div>
+                <div class="tip-title">小贴士</div>
+                <div class="tip-content">选择 LTS（长期支持版）更稳定，安装时记得勾选"Add to PATH"选项。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <h3 class="step-title">一条命令安装 OpenClaw</h3>
+          <div class="step-content">
+            <p>打开命令行（Windows 按 Win+R 输入 cmd），复制粘贴这一行：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>npm install -g openclaw@latest</code>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <h3 class="step-title">启动配置向导</h3>
+          <div class="step-content">
+            <p>安装完成后，运行这条命令，跟着向导一步步操作：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw onboard</code>
+              </div>
+            </div>
+            <p class="mt-2">向导会帮你完成所有配置，包括选择 AI 模型、设置消息渠道等。</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="install.html" class="btn btn-primary">查看详细安装教程 →</a>
+      </div>
+    </section>
+
+    <!-- 能做什么 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">✨</span>
+        它能帮你做什么？
+      </h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">📱</span> 消息助手</h3>
+          <p class="card-text">在 Telegram/微信里随时提问，AI 帮你查资料、写文案、翻译、总结文章。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">⏰</span> 定时提醒</h3>
+          <p class="card-text">设置定时任务，比如每天早上发天气预报、提醒开会、推送新闻摘要。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">🌐</span> 浏览器控制</h3>
+          <p class="card-text">让 AI 帮你打开网页、填表单、截图，自动化处理重复的网页操作。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">📁</span> 文件管理</h3>
+          <p class="card-text">搜索本地文件、整理文件夹、批量重命名，文件杂乱不用愁。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">🏠</span> 智能家居</h3>
+          <p class="card-text">通过语音或消息控制智能设备，"开灯"、"关空调"一句话搞定。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title"><span class="card-icon">🔧</span> 更多可能</h3>
+          <p class="card-text">通过 Skill 系统扩展功能，或者自己写一个专属技能。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 快速链接 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">📚</span>
+        教程导航
+      </h2>
+      <div class="card-grid">
+        <a href="install.html" class="card" style="text-decoration: none;">
+          <h3 class="card-title"><span class="card-icon">⬇️</span> 安装教程</h3>
+          <p class="card-text">Windows / macOS / Linux 完整安装指南</p>
+        </a>
+        <a href="quick-start.html" class="card" style="text-decoration: none;">
+          <h3 class="card-title"><span class="card-icon">🚀</span> 快速上手</h3>
+          <p class="card-text">10 分钟完成配置，开始你的第一次对话</p>
+        </a>
+        <a href="channels.html" class="card" style="text-decoration: none;">
+          <h3 class="card-title"><span class="card-icon">🔗</span> 渠道配置</h3>
+          <p class="card-text">连接 Telegram、微信、Discord 等平台</p>
+        </a>
+        <a href="deploy.html" class="card" style="text-decoration: none;">
+          <h3 class="card-title"><span class="card-icon">☁️</span> 云部署</h3>
+          <p class="card-text">VPS 部署、安全加固、日志排错实战</p>
+        </a>
+        <a href="faq.html" class="card" style="text-decoration: none;">
+          <h3 class="card-title"><span class="card-icon">❓</span> 常见问题</h3>
+          <p class="card-text">安装失败？配置报错？这里找答案</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://openclaw.ai" target="_blank">官网</a>
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a>
+      <a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a>
+      <a href="https://discord.gg/clawd" target="_blank">Discord 社区</a>
+    </div>
+    <p>本教程由社区贡献，非官方文档。OpenClaw 是开源项目，遵循 MIT 协议。</p>
+  </footer>
+
+  <script>
+    // 复制代码功能
+    function copyCode(btn) {
+      const code = btn.closest('.code-block').querySelector('code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = '已复制 ✓';
+        btn.style.color = 'var(--accent-primary)';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
+

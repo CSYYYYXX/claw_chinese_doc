@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常见问题 - OpenClaw 中文教程</title>
+  <meta name="description" content="OpenClaw 常见问题解答：安装问题、配置问题、使用技巧等。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 背景效果 -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🦞</span>
+        <span class="logo-text">OpenClaw 中文教程</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="install.html">安装教程</a></li>
+        <li><a href="quick-start.html">快速上手</a></li>
+        <li><a href="channels.html">渠道配置</a></li>
+        <li><a href="deploy.html">云部署</a></li>
+        <li><a href="faq.html" class="active">常见问题</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 主内容 -->
+  <main class="container content">
+    <!-- 标题 -->
+    <section class="hero" style="padding: 3rem 0; text-align: left;">
+      <h1>常见问题</h1>
+      <p class="hero-subtitle" style="margin: 0;">
+        遇到问题？这里可能有答案。
+      </p>
+    </section>
+
+    <!-- 安装问题 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">📦</span>
+        安装问题
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>npm install 时报错 "permission denied" 或 "EACCES"</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>这是 npm 权限问题，常见于 macOS 和 Linux。</p>
+          <p class="mt-2"><strong>解决方案 1：使用 sudo（简单但不推荐）</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>sudo npm install -g openclaw@latest</code>
+            </div>
+          </div>
+          <p class="mt-2"><strong>解决方案 2：修复 npm 权限（推荐）</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+# 然后把 ~/.npm-global/bin 加到 PATH 环境变量</code>
+            </div>
+          </div>
+          <p class="mt-2"><strong>解决方案 3：使用 nvm 管理 Node.js</strong></p>
+          <p>nvm 安装的 Node.js 默认不需要 sudo。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>安装成功但运行 <code>openclaw</code> 提示"命令不存在"</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>通常是 PATH 环境变量没有包含 npm 全局安装目录。</p>
+          <p class="mt-2"><strong>检查方法：</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>npm config get prefix</code>
+            </div>
+          </div>
+          <p class="mt-2">把输出的 <code>bin</code> 子目录加到 PATH。</p>
+          <p class="mt-2"><strong>示例（macOS/Linux，假设 npm prefix 是 /usr/local）：</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc</code>
+            </div>
+          </div>
+          <p class="mt-2"><strong>Windows 用户：</strong>重新安装 Node.js，确保勾选 "Add to PATH" 选项，然后重启终端。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Windows 上安装很慢或超时</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>可能是网络问题，尝试使用国内镜像：</p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>npm config set registry https://registry.npmmirror.com
+npm install -g openclaw@latest</code>
+            </div>
+          </div>
+          <p class="mt-2">安装完成后可以恢复官方源：</p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>npm config set registry https://registry.npmjs.org</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 配置问题 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">⚙️</span>
+        配置问题
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>API Key 填了但模型不工作</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>检查以下几点：</p>
+          <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li><strong>API Key 格式</strong>：OpenAI 的 Key 以 <code>sk-</code> 开头，Anthropic 的 Key 也是固定前缀</li>
+            <li><strong>账户余额</strong>：确认 API 账户有余额/额度</li>
+            <li><strong>网络访问</strong>：如果在国内使用 OpenAI，需要配置代理</li>
+            <li><strong>模型名称</strong>：检查配置文件中的模型名是否正确</li>
+          </ol>
+          <p class="mt-2"><strong>配置代理（国内用户）：</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code># 设置环境变量
+export HTTP_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890</code>
+            </div>
+          </div>
+          <p class="mt-2">或者在配置文件中设置：</p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>{
+  "providers": {
+    "openai": {
+      "apiKey": "sk-xxx",
+      "baseURL": "https://your-proxy.com/v1"
+    }
+  }
+}</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>如何配置多个 AI 模型并切换？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>OpenClaw 支持配置多个 provider，然后在对话中切换模型。</p>
+          <p class="mt-2"><strong>配置示例：</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>{
+  "providers": {
+    "openai": {
+      "apiKey": "sk-xxx"
+    },
+    "anthropic": {
+      "apiKey": "sk-ant-xxx"
+    },
+    "google": {
+      "apiKey": "xxx"
+    }
+  },
+  "defaultModel": "openai-codex/gpt-5.3-codex"
+}</code>
+            </div>
+          </div>
+          <p class="mt-2"><strong>在对话中切换模型：</strong></p>
+          <p>发送 <code>/model anthropic/claude-3-7-sonnet</code> 即可切换当前会话的模型。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>配置文件在哪里？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>配置文件位置：</p>
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li><strong>macOS / Linux：</strong><code>~/.openclaw/config.json</code></li>
+            <li><strong>Windows：</strong><code>C:\Users\你的用户名\.openclaw\config.json</code></li>
+          </ul>
+          <p class="mt-2">直接用文本编辑器打开即可修改。</p>
+          <div class="code-block">
+            <div class="code-content">
+              <code># macOS/Linux
+code ~/.openclaw/config.json
+
+# Windows (PowerShell)
+code $env:USERPROFILE\.openclaw\config.json</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 使用问题 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">💬</span>
+        使用问题
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>AI 回复一半就停了</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>可能的原因：</p>
+          <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li><strong>达到 token 限制</strong>：模型单次输出有上限，可以发送"继续"让 AI 继续输出</li>
+            <li><strong>网络中断</strong>：检查网络连接，尤其是使用代理时</li>
+            <li><strong>API 超时</strong>：较长的回复可能超时，尝试在配置中增加超时时间</li>
+          </ol>
+          <div class="tip tip-info mt-2">
+            <span class="tip-icon">💡</span>
+            <div class="tip-content">大多数情况下，回复"继续"或"请继续"就能让 AI 补全剩余内容。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>如何查看对话历史？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>OpenClaw 会自动保存对话历史：</p>
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li><strong>Web Chat：</strong>历史记录在侧边栏</li>
+            <li><strong>Telegram/Discord：</strong>直接在聊天记录中查看</li>
+            <li><strong>命令行：</strong><code>openclaw sessions list</code> 查看会话列表</li>
+          </ul>
+          <p class="mt-2"><strong>导出对话：</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>openclaw sessions export <session-key> > conversation.json</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>如何让 AI 记住一些信息？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>OpenClaw 支持"记忆"功能，让 AI 在不同会话中记住重要信息。</p>
+          <p class="mt-2"><strong>方式一：在对话中告诉 AI</strong></p>
+          <p>直接说"记住这个：我喜欢用 Python 写代码"，AI 会写入记忆文件。</p>
+          <p class="mt-2"><strong>方式二：编辑记忆文件</strong></p>
+          <p>记忆文件位于工作目录下：</p>
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li><code>MEMORY.md</code> - 长期记忆</li>
+            <li><code>memory/YYYY-MM-DD.md</code> - 每日记录</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>AI 总是忘记之前说过的话</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>这通常是因为上下文窗口满了。AI 只能"看到"最近的 N 条消息。</p>
+          <p class="mt-2"><strong>解决方案：</strong></p>
+          <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li><strong>开始新会话</strong>：发送 <code>/new</code> 清空上下文，重新开始</li>
+            <li><strong>总结要点</strong>：让 AI 先总结之前的讨论，然后在新会话中继续</li>
+            <li><strong>使用记忆功能</strong>：把重要信息写入 MEMORY.md</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 高级问题 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">🔧</span>
+        高级问题
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>如何安装 Skills（技能包）？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Skills 是 OpenClaw 的扩展能力包，可以从 ClawHub 安装：</p>
+          <div class="code-block">
+            <div class="code-content">
+              <code># 搜索技能
+openclaw skill search &lt;关键词&gt;
+
+# 安装技能
+openclaw skill install &lt;skill-name&gt;
+
+# 列出已安装技能
+openclaw skill list</code>
+            </div>
+          </div>
+          <p class="mt-2">或者访问 <a href="https://clawhub.com" target="_blank" style="color: var(--accent-primary);">ClawHub</a> 浏览所有可用技能。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>如何让 AI 控制我的电脑（执行命令、操作文件）？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>OpenClaw 默认就支持文件操作和命令执行，但需要注意安全设置。</p>
+          <p class="mt-2"><strong>安全模式</strong>（默认）：</p>
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li>AI 可以读取文件</li>
+            <li>写入文件需要确认</li>
+            <li>执行命令需要确认</li>
+          </ul>
+          <p class="mt-2"><strong>调整安全级别：</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>{
+  "security": {
+    "mode": "full"  // allowlist | full
+  }
+}</code>
+            </div>
+          </div>
+          <div class="tip tip-warning mt-2">
+            <span class="tip-icon">⚠️</span>
+            <div class="tip-content">谨慎使用 <code>full</code> 模式，AI 将可以执行任意命令而无需确认。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Gateway 占用太多内存怎么办？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>如果长时间运行，可以定期重启 Gateway 释放内存。</p>
+          <p class="mt-2"><strong>使用 systemd（Linux）自动管理：</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>openclaw onboard --install-daemon
+
+# 查看状态
+systemctl status openclaw-gateway
+
+# 重启
+sudo systemctl restart openclaw-gateway</code>
+            </div>
+          </div>
+          <p class="mt-2"><strong>使用 pm2（跨平台）：</strong></p>
+          <div class="code-block">
+            <div class="code-content">
+              <code>npm install -g pm2
+pm2 start "openclaw gateway" --name openclaw
+pm2 save
+pm2 startup</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>如何部署到云服务器？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>OpenClaw 可以部署到任何支持 Node.js 的服务器上。</p>
+          <p class="mt-2"><strong>基本步骤：</strong></p>
+          <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li>在服务器上安装 Node.js</li>
+            <li><code>npm install -g openclaw@latest</code></li>
+            <li>配置 <code>~/.openclaw/config.json</code></li>
+            <li>运行 <code>openclaw onboard --install-daemon</code> 安装为系统服务</li>
+          </ol>
+          <p class="mt-2"><strong>注意事项：</strong></p>
+          <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+            <li>确保服务器防火墙开放对应端口（如果使用 Web Chat）</li>
+            <li>建议配置 HTTPS（使用 nginx 反向代理 + Let's Encrypt）</li>
+            <li>定期备份数据目录</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 其他问题 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">❓</span>
+        还有问题？
+      </h2>
+      <div class="card-grid">
+        <a href="https://docs.openclaw.ai" target="_blank" class="card" style="text-decoration: none;">
+          <h3 class="card-title">📖 官方文档</h3>
+          <p class="card-text">查看完整文档</p>
+        </a>
+        <a href="https://github.com/openclaw/openclaw/issues" target="_blank" class="card" style="text-decoration: none;">
+          <h3 class="card-title">🐛 GitHub Issues</h3>
+          <p class="card-text">报告 Bug 或查看已知问题</p>
+        </a>
+        <a href="https://discord.gg/clawd" target="_blank" class="card" style="text-decoration: none;">
+          <h3 class="card-title">💬 Discord 社区</h3>
+          <p class="card-text">加入社区提问和交流</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- 导航按钮 -->
+    <section class="section text-center">
+      <a href="channels.html" class="btn btn-secondary">← 渠道配置</a>
+      <a href="index.html" class="btn btn-primary">返回首页 →</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://openclaw.ai" target="_blank">官网</a>
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a>
+      <a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a>
+      <a href="https://discord.gg/clawd" target="_blank">Discord 社区</a>
+    </div>
+    <p>本教程由社区贡献，非官方文档。OpenClaw 是开源项目，遵循 MIT 协议。</p>
+  </footer>
+
+  <style>
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .faq-item:hover {
+      border-color: var(--accent-primary);
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .faq-icon {
+      font-size: 1.5rem;
+      color: var(--accent-primary);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+  </style>
+
+  <script>
+    function toggleFaq(element) {
+      const faqItem = element.parentElement;
+      faqItem.classList.toggle('active');
+    }
+
+    function copyCode(btn) {
+      const code = btn.closest('.code-block').querySelector('code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = '已复制 ✓';
+        btn.style.color = 'var(--accent-primary)';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安装教程 - OpenClaw 中文教程</title>
+  <meta name="description" content="OpenClaw 安装教程：Windows、macOS、Linux 详细安装步骤，零基础也能轻松完成。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 背景效果 -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🦞</span>
+        <span class="logo-text">OpenClaw 中文教程</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="install.html">安装教程</a></li>
+        <li><a href="quick-start.html">快速上手</a></li>
+        <li><a href="channels.html">渠道配置</a></li>
+        <li><a href="deploy.html">云部署</a></li>
+        <li><a href="faq.html">常见问题</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 主内容 -->
+  <main class="container content">
+    <!-- 标题 -->
+    <section class="hero" style="padding: 3rem 0; text-align: left;">
+      <h1>安装教程</h1>
+      <p class="hero-subtitle" style="margin: 0;">
+        根据你的操作系统，选择对应的安装方式。整个过程大约需要 10 分钟。
+      </p>
+    </section>
+
+    <!-- 系统选择 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">🖥️</span>
+        选择你的操作系统
+      </h2>
+      <div class="card-grid">
+        <div class="card" id="windows-card" onclick="showSection('windows')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">🪟</span> Windows</h3>
+          <p class="card-text">Windows 10/11，推荐使用 WSL2</p>
+        </div>
+        <div class="card" id="macos-card" onclick="showSection('macos')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">🍎</span> macOS</h3>
+          <p class="card-text">支持 Intel 和 Apple Silicon</p>
+        </div>
+        <div class="card" id="linux-card" onclick="showSection('linux')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">🐧</span> Linux</h3>
+          <p class="card-text">Ubuntu、Debian、CentOS 等</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Windows 安装 -->
+    <section class="section" id="windows-section" style="display: none;">
+      <h2 class="section-title">
+        <span class="section-title-icon">🪟</span>
+        Windows 安装步骤
+      </h2>
+      
+      <div class="tip tip-info mb-3">
+        <span class="tip-icon">💡</span>
+        <div>
+          <div class="tip-title">推荐：使用 WSL2</div>
+          <div class="tip-content">WSL2 可以在 Windows 上运行 Linux 环境，兼容性更好。如果你想用纯 Windows，也可以，继续往下看。</div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">安装 Node.js</h3>
+          <div class="step-content">
+            <p>1. 访问 <a href="https://nodejs.org" target="_blank" style="color: var(--accent-primary);">https://nodejs.org</a></p>
+            <p>2. 下载 LTS 版本（长期支持版，更稳定）</p>
+            <p>3. 运行安装程序，一路点"下一步"</p>
+            <p>4. 安装完成后，按 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">Win + R</code>，输入 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">cmd</code>，回车</p>
+            <p>5. 输入以下命令验证安装：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>node --version</code>
+              </div>
+            </div>
+            <p class="mt-1">如果显示版本号（如 v20.x.x），说明安装成功！</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">安装 OpenClaw</h3>
+          <div class="step-content">
+            <p>在命令行中执行：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>npm install -g openclaw@latest</code>
+              </div>
+            </div>
+            <p class="mt-2">等待几秒钟，看到进度条走完就安装好了。</p>
+            
+            <div class="tip tip-warning mt-2">
+              <span class="tip-icon">⚠️</span>
+              <div>
+                <div class="tip-title">如果报错</div>
+                <div class="tip-content">如果提示"npm 不是内部或外部命令"，说明 Node.js 没装好或没加到环境变量。重新安装 Node.js，确保勾选"Add to PATH"选项。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">运行配置向导</h3>
+          <div class="step-content">
+            <p>输入这条命令启动向导：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw onboard</code>
+              </div>
+            </div>
+            <p class="mt-2">向导会引导你：</p>
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>选择 AI 模型（推荐 OpenAI 或 Anthropic）</li>
+              <li>配置消息渠道（Telegram、Discord 等）</li>
+              <li>安装 Gateway 服务（让 AI 在后台持续运行）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">启动 Gateway</h3>
+          <div class="step-content">
+            <p>配置完成后，启动网关服务：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw gateway</code>
+              </div>
+            </div>
+            <p class="mt-2">看到 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">Gateway running on http://127.0.0.1:18789</code> 就成功了！</p>
+            <p class="mt-1">打开浏览器访问 <a href="http://127.0.0.1:18789" target="_blank" style="color: var(--accent-primary);">http://127.0.0.1:18789</a> 可以看到控制面板。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- macOS 安装 -->
+    <section class="section" id="macos-section" style="display: none;">
+      <h2 class="section-title">
+        <span class="section-title-icon">🍎</span>
+        macOS 安装步骤
+      </h2>
+      
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">安装 Homebrew（包管理器）</h3>
+          <div class="step-content">
+            <p>Homebrew 是 macOS 上最常用的包管理器，可以方便地安装软件。</p>
+            <p class="mt-2">打开"终端"（按 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">Cmd + 空格</code>，输入"终端"），粘贴以下命令：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">终端</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+              </div>
+            </div>
+            <p class="mt-2">按回车执行，等待安装完成。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">安装 Node.js</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">终端</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>brew install node</code>
+              </div>
+            </div>
+            <p class="mt-2">验证安装：</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">终端</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>node --version</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">安装 OpenClaw</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">终端</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>npm install -g openclaw@latest</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">运行配置向导</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">终端</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw onboard</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">启动 Gateway</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">终端</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw gateway</code>
+              </div>
+            </div>
+            <p class="mt-2">或者安装为后台服务：</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">终端</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw onboard --install-daemon</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip tip-success mt-3">
+        <span class="tip-icon">✨</span>
+        <div>
+          <div class="tip-title">macOS 专属：菜单栏应用</div>
+          <div class="tip-content">OpenClaw 提供了 macOS 菜单栏应用，可以方便地查看状态、快速操作。在向导中选择安装即可。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Linux 安装 -->
+    <section class="section" id="linux-section" style="display: none;">
+      <h2 class="section-title">
+        <span class="section-title-icon">🐧</span>
+        Linux 安装步骤
+      </h2>
+      
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">安装 Node.js</h3>
+          <div class="step-content">
+            <p>Ubuntu/Debian：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs</code>
+              </div>
+            </div>
+            <p class="mt-2">CentOS/RHEL：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
+sudo yum install -y nodejs</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">安装 OpenClaw</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>npm install -g openclaw@latest</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">运行配置向导</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw onboard --install-daemon</code>
+              </div>
+            </div>
+            <p class="mt-2"><code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">--install-daemon</code> 会将 OpenClaw 安装为系统服务，自动启动。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">启动 Gateway</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw gateway</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip tip-info mt-3">
+        <span class="tip-icon">💡</span>
+        <div>
+          <div class="tip-title">服务器部署</div>
+          <div class="tip-content">如果你想把 OpenClaw 部署到云服务器上，可以参考 <a href="https://docs.openclaw.ai/vps" target="_blank" style="color: var(--accent-primary);">VPS 部署指南</a>。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 验证安装 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">✅</span>
+        验证安装
+      </h2>
+      <p class="section-desc">安装完成后，用这些命令检查是否正常工作。</p>
+      
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">命令行</span>
+          <button class="code-copy" onclick="copyCode(this)">复制</button>
+        </div>
+        <div class="code-content">
+          <code>openclaw status</code>
+        </div>
+      </div>
+      
+      <p class="mt-2">如果看到类似下面的输出，说明一切正常：</p>
+      <div class="code-block mt-2">
+        <div class="code-header">
+          <span class="code-lang">输出示例</span>
+        </div>
+        <div class="code-content">
+          <code style="color: var(--text-muted);">OpenClaw status
+
+Overview
+┌─────────────────┬──────────────────────────────────────┐
+│ Item            │ Value                                │
+├─────────────────┼──────────────────────────────────────┤
+│ Gateway         │ running · ws://127.0.0.1:18789       │
+│ Model           │ openai-codex/gpt-5.3-codex           │
+│ Sessions        │ 1 active                             │
+└─────────────────┴──────────────────────────────────────┘</code>
+        </div>
+      </div>
+
+      <div class="tip tip-success mt-3">
+        <span class="tip-icon">🎉</span>
+        <div>
+          <div class="tip-title">恭喜！安装完成</div>
+          <div class="tip-content">下一步：<a href="quick-start.html" style="color: var(--accent-primary);">快速上手</a>，开始你的第一次对话。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 导航按钮 -->
+    <section class="section text-center">
+      <a href="index.html" class="btn btn-secondary">← 返回首页</a>
+      <a href="quick-start.html" class="btn btn-primary">快速上手 →</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://openclaw.ai" target="_blank">官网</a>
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a>
+      <a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a>
+      <a href="https://discord.gg/clawd" target="_blank">Discord 社区</a>
+    </div>
+    <p>本教程由社区贡献，非官方文档。OpenClaw 是开源项目，遵循 MIT 协议。</p>
+  </footer>
+
+  <script>
+    // 显示对应系统的安装说明
+    function showSection(os) {
+      // 隐藏所有 section
+      document.getElementById('windows-section').style.display = 'none';
+      document.getElementById('macos-section').style.display = 'none';
+      document.getElementById('linux-section').style.display = 'none';
+      
+      // 移除所有 card 的高亮
+      document.getElementById('windows-card').style.borderColor = 'var(--border-color)';
+      document.getElementById('macos-card').style.borderColor = 'var(--border-color)';
+      document.getElementById('linux-card').style.borderColor = 'var(--border-color)';
+      
+      // 显示选中的 section 并高亮对应的 card
+      document.getElementById(os + '-section').style.display = 'block';
+      document.getElementById(os + '-card').style.borderColor = 'var(--accent-primary)';
+      
+      // 滚动到 section
+      document.getElementById(os + '-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // 复制代码功能
+    function copyCode(btn) {
+      const code = btn.closest('.code-block').querySelector('code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = '已复制 ✓';
+        btn.style.color = 'var(--accent-primary)';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
+

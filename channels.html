@@ -1,0 +1,627 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>渠道配置 - OpenClaw 中文教程</title>
+  <meta name="description" content="OpenClaw 渠道配置教程：Telegram、Discord、WhatsApp、iMessage 等平台配置详解。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 背景效果 -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🦞</span>
+        <span class="logo-text">OpenClaw 中文教程</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="install.html">安装教程</a></li>
+        <li><a href="quick-start.html">快速上手</a></li>
+        <li><a href="channels.html" class="active">渠道配置</a></li>
+        <li><a href="deploy.html">云部署</a></li>
+        <li><a href="faq.html">常见问题</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 主内容 -->
+  <main class="container content">
+    <!-- 标题 -->
+    <section class="hero" style="padding: 3rem 0; text-align: left;">
+      <h1>渠道配置</h1>
+      <p class="hero-subtitle" style="margin: 0;">
+        配置你习惯使用的聊天平台，让 AI 助手随时在线。
+      </p>
+    </section>
+
+    <!-- 渠道概览 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">📱</span>
+        支持的渠道
+      </h2>
+      <div class="card-grid">
+        <div class="card" id="telegram-card" onclick="showChannel('telegram')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">📱</span> Telegram</h3>
+          <p class="card-text">Bot 方式接入，最简单稳定</p>
+          <span style="font-size: 0.75rem; background: var(--accent-success); color: var(--bg-primary); padding: 2px 8px; border-radius: 999px;">推荐</span>
+        </div>
+        <div class="card" id="discord-card" onclick="showChannel('discord')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">🎮</span> Discord</h3>
+          <p class="card-text">Bot + Slash 命令</p>
+        </div>
+        <div class="card" id="whatsapp-card" onclick="showChannel('whatsapp')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">💬</span> WhatsApp</h3>
+          <p class="card-text">个人号扫码接入</p>
+        </div>
+        <div class="card" id="imessage-card" onclick="showChannel('imessage')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">🍎</span> iMessage</h3>
+          <p class="card-text">macOS 专属</p>
+        </div>
+        <div class="card" id="signal-card" onclick="showChannel('signal')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">🔒</span> Signal</h3>
+          <p class="card-text">注重隐私的加密通讯</p>
+        </div>
+        <div class="card" id="slack-card" onclick="showChannel('slack')" style="cursor: pointer;">
+          <h3 class="card-title"><span class="card-icon">💼</span> Slack</h3>
+          <p class="card-text">企业团队协作</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Telegram 配置 -->
+    <section class="section" id="telegram-section">
+      <h2 class="section-title">
+        <span class="section-title-icon">📱</span>
+        Telegram Bot 配置
+      </h2>
+      <p class="section-desc">5 分钟完成配置，最推荐新手使用。</p>
+
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">创建 Bot</h3>
+          <div class="step-content">
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>在 Telegram 搜索 <strong>@BotFather</strong></li>
+              <li>发送 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">/newbot</code></li>
+              <li>按提示输入 Bot 名称（如 "我的AI助手"）</li>
+              <li>输入 Bot 用户名（必须以 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">bot</code> 结尾，如 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">my_ai_assistant_bot</code>）</li>
+              <li>复制 BotFather 返回的 <strong>Token</strong>（类似 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">123456789:ABCDefGHIjklMNOpqrsTUVwxyz</code>）</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">配置 OpenClaw</h3>
+          <div class="step-content">
+            <p>运行配置向导：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw onboard</code>
+              </div>
+            </div>
+            <p class="mt-2">选择 Telegram，粘贴刚才的 Token。</p>
+            <p class="mt-1">或者直接编辑配置文件：</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">~/.openclaw/config.json</span>
+              </div>
+              <div class="code-content">
+                <code>{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "你的 Bot Token",
+      "dmPolicy": "pairing",
+      "groups": {
+        "*": { "requireMention": true }
+      }
+    }
+  }
+}</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">启动并测试</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw gateway</code>
+              </div>
+            </div>
+            <p class="mt-2">在 Telegram 找到你的 Bot，发送 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">/start</code> 开始对话！</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip tip-success mt-3">
+        <span class="tip-icon">✨</span>
+        <div>
+          <div class="tip-title">Telegram 优势</div>
+          <div class="tip-content">响应速度快、支持 Markdown 格式、支持文件传输、多端同步、完全免费。</div>
+        </div>
+      </div>
+
+      <div class="tip tip-info mt-2">
+        <span class="tip-icon">🛠️</span>
+        <div>
+          <div class="tip-title">Telegram 常见问题排查</div>
+          <div class="tip-content">收不到消息：先确认 Bot Token 正确、Bot 已发过 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">/start</code>，再看 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">openclaw status</code> 和网关日志。官方文档：<a href="https://docs.openclaw.ai/channels/telegram" target="_blank" style="color: var(--accent-primary);">Telegram 渠道</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Discord 配置 -->
+    <section class="section" id="discord-section" style="display: none;">
+      <h2 class="section-title">
+        <span class="section-title-icon">🎮</span>
+        Discord Bot 配置
+      </h2>
+      <p class="section-desc">适合 Discord 用户，支持服务器和私信。</p>
+
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">创建 Discord 应用</h3>
+          <div class="step-content">
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>访问 <a href="https://discord.com/developers/applications" target="_blank" style="color: var(--accent-primary);">Discord Developer Portal</a></li>
+              <li>点击 "New Application"，输入名称</li>
+              <li>左侧菜单选择 "Bot"，点击 "Add Bot"</li>
+              <li>复制 Bot Token（点击 "Reset Token" 生成新 Token）</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">获取 OAuth URL</h3>
+          <div class="step-content">
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>左侧菜单选择 "OAuth2" → "URL Generator"</li>
+              <li>Scopes 勾选 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">bot</code> 和 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">applications.commands</code></li>
+              <li>Bot Permissions 勾选：
+                <ul style="margin-top: 0.5rem;">
+                  <li>Send Messages</li>
+                  <li>Read Message History</li>
+                  <li>Use Slash Commands</li>
+                </ul>
+              </li>
+              <li>复制生成的 URL，在浏览器打开，邀请 Bot 到服务器</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">配置 OpenClaw</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">~/.openclaw/config.json</span>
+              </div>
+              <div class="code-content">
+                <code>{
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": "你的 Bot Token",
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "guilds": {
+        "你的 Server ID": {
+          "requireMention": true,
+          "users": ["你的 User ID"]
+        }
+      }
+    }
+  }
+}</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip tip-info mt-3">
+        <span class="tip-icon">💡</span>
+        <div>
+          <div class="tip-title">Slash 命令</div>
+          <div class="tip-content">Discord 支持 Slash 命令，输入 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">/</code> 可以看到所有可用命令。</div>
+        </div>
+      </div>
+
+      <div class="tip tip-warning mt-2">
+        <span class="tip-icon">🧩</span>
+        <div>
+          <div class="tip-title">Discord 常见问题排查</div>
+          <div class="tip-content">Bot 在线但不回：重点检查 Bot 是否有目标频道发言权限、消息内容读取权限、以及 OAuth scopes 是否包含 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">applications.commands</code>。官方文档：<a href="https://docs.openclaw.ai/channels/discord" target="_blank" style="color: var(--accent-primary);">Discord 渠道</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WhatsApp 配置 -->
+    <section class="section" id="whatsapp-section" style="display: none;">
+      <h2 class="section-title">
+        <span class="section-title-icon">💬</span>
+        WhatsApp 配置
+      </h2>
+      <p class="section-desc">使用你的个人 WhatsApp 账号接入。</p>
+
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">运行配置向导</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">命令行</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw onboard</code>
+              </div>
+            </div>
+            <p class="mt-2">选择 WhatsApp，向导会显示一个二维码。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">扫码登录</h3>
+          <div class="step-content">
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>打开手机 WhatsApp</li>
+              <li>设置 → 已关联的设备 → 关联设备</li>
+              <li>扫描终端显示的二维码</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">开始使用</h3>
+          <div class="step-content">
+            <p>扫码成功后，你会收到一条确认消息。之后可以：</p>
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>给自己发消息与 AI 对话</li>
+              <li>在群聊中 @你的 WhatsApp 号码调用 AI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip tip-warning mt-3">
+        <span class="tip-icon">⚠️</span>
+        <div>
+          <div class="tip-title">注意事项</div>
+          <div class="tip-content">WhatsApp 个人号接入使用了非官方客户端，有极小概率被限制。建议使用专门的小号，或考虑 Telegram Bot 方案。</div>
+        </div>
+      </div>
+
+      <div class="tip tip-info mt-2">
+        <span class="tip-icon">🛠️</span>
+        <div>
+          <div class="tip-title">WhatsApp 常见问题排查</div>
+          <div class="tip-content">二维码反复失效：先退出旧会话并重启 Gateway，再重新扫码；如果云服务器无图形界面，建议用 Telegram/Discord 先跑通。官方文档：<a href="https://docs.openclaw.ai/channels/whatsapp" target="_blank" style="color: var(--accent-primary);">WhatsApp 渠道</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- iMessage 配置 -->
+    <section class="section" id="imessage-section" style="display: none;">
+      <h2 class="section-title">
+        <span class="section-title-icon">🍎</span>
+        iMessage 配置
+      </h2>
+      <p class="section-desc">macOS 专属，原生体验。</p>
+
+      <div class="tip tip-info mb-3">
+        <span class="tip-icon">💡</span>
+        <div>
+          <div class="tip-title">系统要求</div>
+          <div class="tip-content">仅支持 macOS 12+ (Monterey) 及以上版本。需要登录 iCloud 账号并开启 iMessage。</div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">授权 iMessage</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">终端</span>
+                <button class="code-copy" onclick="copyCode(this)">复制</button>
+              </div>
+              <div class="code-content">
+                <code>openclaw onboard</code>
+              </div>
+            </div>
+            <p class="mt-2">选择 iMessage，系统会弹出授权请求，点击"允许"。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">开始使用</h3>
+          <div class="step-content">
+            <p>配置完成后，你可以：</p>
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>给自己的 Apple ID 发消息与 AI 对话</li>
+              <li>在群聊中提及 AI 触发对话</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip tip-success mt-3">
+        <span class="tip-icon">✨</span>
+        <div>
+          <div class="tip-title">隐私优先</div>
+          <div class="tip-content">iMessage 消息使用端到端加密，Apple 无法读取。OpenClaw 在本地处理消息，不会上传到任何第三方服务器。</div>
+        </div>
+      </div>
+
+      <div class="tip tip-info mt-2">
+        <span class="tip-icon">🧭</span>
+        <div>
+          <div class="tip-title">iMessage 常见问题排查</div>
+          <div class="tip-content">无法触发消息：确认 macOS 已登录同一 Apple ID、iMessage 可正常收发，并给 OpenClaw 授予自动化/辅助功能权限。官方文档：<a href="https://docs.openclaw.ai/channels/imessage" target="_blank" style="color: var(--accent-primary);">iMessage 渠道</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signal 配置 -->
+    <section class="section" id="signal-section" style="display: none;">
+      <h2 class="section-title">
+        <span class="section-title-icon">🔒</span>
+        Signal 配置
+      </h2>
+      <p class="section-desc">注重隐私的加密通讯方案。</p>
+
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">安装 Signal CLI</h3>
+          <div class="step-content">
+            <p>Signal 需要通过 Signal CLI 接入。请参考 <a href="https://github.com/AsamK/signal-cli" target="_blank" style="color: var(--accent-primary);">signal-cli 官方文档</a> 安装。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">注册或关联号码</h3>
+          <div class="step-content">
+            <p>建议使用专用号码注册 Signal CLI，而不是关联主号。</p>
+            <div class="code-block mt-2">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+              </div>
+              <div class="code-content">
+                <code>signal-cli -u +86XXXXXXXXXXX register</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">配置 OpenClaw</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">~/.openclaw/config.json</span>
+              </div>
+              <div class="code-content">
+                <code>{
+  "channels": {
+    "signal": {
+      "enabled": true,
+      "phoneNumber": "+86XXXXXXXXXXX"
+    }
+  }
+}</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip tip-info mt-2">
+        <span class="tip-icon">🧪</span>
+        <div>
+          <div class="tip-title">Signal 常见问题排查</div>
+          <div class="tip-content">注册失败通常是号码或验证码流程问题；建议先独立确认 signal-cli 可收发，再接入 OpenClaw。官方文档：<a href="https://docs.openclaw.ai/channels/signal" target="_blank" style="color: var(--accent-primary);">Signal 渠道</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slack 配置 -->
+    <section class="section" id="slack-section" style="display: none;">
+      <h2 class="section-title">
+        <span class="section-title-icon">💼</span>
+        Slack 配置
+      </h2>
+      <p class="section-desc">企业团队协作场景。</p>
+
+      <div class="steps">
+        <div class="step">
+          <h3 class="step-title">创建 Slack App</h3>
+          <div class="step-content">
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>访问 <a href="https://api.slack.com/apps" target="_blank" style="color: var(--accent-primary);">Slack API: Applications</a></li>
+              <li>点击 "Create New App" → "From scratch"</li>
+              <li>输入 App 名称，选择工作区</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">配置权限</h3>
+          <div class="step-content">
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>左侧选择 "OAuth & Permissions"</li>
+              <li>在 "Bot Token Scopes" 添加：
+                <ul style="margin-top: 0.5rem;">
+                  <li><code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">app_mentions:read</code></li>
+                  <li><code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">chat:write</code></li>
+                  <li><code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">channels:history</code></li>
+                  <li><code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">groups:history</code></li>
+                </ul>
+              </li>
+              <li>点击 "Install to Workspace" 并授权</li>
+              <li>复制生成的 Bot User OAuth Token</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">配置 OpenClaw</h3>
+          <div class="step-content">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">~/.openclaw/config.json</span>
+              </div>
+              <div class="code-content">
+                <code>{
+  "channels": {
+    "slack": {
+      "enabled": true,
+      "botToken": "xoxb-xxxxxxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
+      "appToken": "xapp-xxxxxxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
+      "signingSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+  }
+}</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3 class="step-title">启用 Socket Mode</h3>
+          <div class="step-content">
+            <p>Slack 需要使用 Socket Mode 来接收事件：</p>
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary);">
+              <li>左侧选择 "Socket Mode" → Enable</li>
+              <li>生成 App-Level Token（scope: <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">connections:write</code>）</li>
+              <li>将 App-Level Token 填入配置中的 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">appToken</code></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="tip tip-info mt-2">
+        <span class="tip-icon">🛠️</span>
+        <div>
+          <div class="tip-title">Slack 常见问题排查</div>
+          <div class="tip-content">大多数问题来自 Token/Scope 配置不全：确认 bot token、app token、signing secret 都已填，并已启用 Socket Mode。官方文档：<a href="https://docs.openclaw.ai/channels/slack" target="_blank" style="color: var(--accent-primary);">Slack 渠道</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 多渠道同时使用 -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-title-icon">🔌</span>
+        同时使用多个渠道
+      </h2>
+      <p class="section-desc">OpenClaw 支持同时启用多个渠道。</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">~/.openclaw/config.json</span>
+        </div>
+        <div class="code-content">
+          <code>{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "token": "xxx"
+    },
+    "discord": {
+      "enabled": true,
+      "token": "xxx",
+      "clientId": "xxx"
+    },
+    "whatsapp": {
+      "enabled": false
+    }
+  }
+}</code>
+        </div>
+      </div>
+
+      <p class="mt-3" style="color: var(--text-secondary);">只要 <code style="background: var(--bg-card); padding: 2px 8px; border-radius: 4px;">enabled: true</code>，Gateway 启动后会自动连接所有已启用的渠道。</p>
+    </section>
+
+    <!-- 导航按钮 -->
+    <section class="section text-center">
+      <a href="quick-start.html" class="btn btn-secondary">← 快速上手</a>
+      <a href="faq.html" class="btn btn-primary">常见问题 →</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://openclaw.ai" target="_blank">官网</a>
+      <a href="https://docs.openclaw.ai" target="_blank">官方文档</a>
+      <a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a>
+      <a href="https://discord.gg/clawd" target="_blank">Discord 社区</a>
+    </div>
+    <p>本教程由社区贡献，非官方文档。OpenClaw 是开源项目，遵循 MIT 协议。</p>
+  </footer>
+
+  <script>
+    function showChannel(channel) {
+      // 隐藏所有渠道说明
+      const sections = ['telegram', 'discord', 'whatsapp', 'imessage', 'signal', 'slack'];
+      sections.forEach(s => {
+        document.getElementById(s + '-section').style.display = 'none';
+        document.getElementById(s + '-card').style.borderColor = 'var(--border-color)';
+      });
+      
+      // 显示选中的渠道
+      document.getElementById(channel + '-section').style.display = 'block';
+      document.getElementById(channel + '-card').style.borderColor = 'var(--accent-primary)';
+      
+      // 滚动到对应位置
+      document.getElementById(channel + '-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function copyCode(btn) {
+      const code = btn.closest('.code-block').querySelector('code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = '已复制 ✓';
+        btn.style.color = 'var(--accent-primary)';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = (window.location.hash || '').replace('#', '');
+      const map = {
+        'telegram-section': 'telegram',
+        'discord-section': 'discord',
+        'whatsapp-section': 'whatsapp',
+        'imessage-section': 'imessage',
+        'signal-section': 'signal',
+        'slack-section': 'slack'
+      };
+      if (map[hash]) showChannel(map[hash]);
+    });
+  </script>
+</body>
+</html>
+
